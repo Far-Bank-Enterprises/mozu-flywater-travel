@@ -418,6 +418,12 @@
       "properties": {},
       "template": "mobile-notification/opt-out-acknowledgement",
       "title": "Opt Out Acknowledgement"
+    },
+    {
+      "id": "shipment.customeratstore",
+      "properties": {},
+      "template": "mobile-notification/curbside-customer-at-store",
+      "title": "Customer At Store"
     }
   ],
   "pageTypes": [
