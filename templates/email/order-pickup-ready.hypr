@@ -176,25 +176,88 @@
     </table>
 
     <br>
+	
+	<!--- Order Details --->
+    <div class="mz-multiship-email" style="width: 100%;">
+        <div class="mz-table-header" style="padding:15px">
+            <span style="font-size:25px">{{ labels.orderDetails }}</span>
+            <div style="font-size:14px;float:right;">
+                <div> {{ labels.orderNumber }}: </div>
+                <div style="float:right;"> {{ model.orderNumber }} </div>
+            </div>
+        </div>
+    </div>
+	
+	<hr/>	
+	<div style="margin: 10px 0px">		
+		<span style="font-size:18px">{{ labels.itemsToFulfill }}</span>
+	</div>
+	
+	<!--- Items Grid --->
     <table width="100%" cellpadding="1" cellspacing="1" width="50%">
-        <thead>
-            <tr>
-                <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.item }}</font></td>
-                <td bgcolor="#666666" style="text-align: right;"><font color="#FFFFFF">{{ labels.subtotal }}</font></td>
-            </tr>
-        </thead>
+    <thead>
+        <tr>
+            <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.item }}</font></td>
+            <td bgcolor="#666666"></td>
+            <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.price }}</font></td>
+            <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.qty }}</font></td>
+            <td bgcolor="#666666" style="text-align: right;"><font color="#FFFFFF">{{ labels.subtotal }}</font></td>
+        </tr>
+    </thead>
         
     {% for item in model.items %}
 			<tr class="mz-ordersummary-line mz-ordersummary-line-item">
 				<td>
-                {{ item.name }}
-                <dl>
-                    <dd>{{ item.productCode }}</dd>&nbsp;
-                </dl>
+					<img style="height: 100px;" src="{{ item.imageUrl }}">
+				<td>
+					<dl>
+						<dd>{{ item.name }}</dd>&nbsp;
+						<dd>{{ labels.discount }}: {{ item.itemDiscount }}</dd>&nbsp;
+						<dd>{{ labels.tax }}: {{ item.itemTax }}</dd>&nbsp;
+					</dl>
                 </td>
-                <td align="right"><span class="mz-item-price">{% filter currency %} {{ item.actualPrice|multiply(item.quantity) }} {% endfilter %}</span></td>
+				<td>
+					{{ item.unitPrice }}
+                </td>
+				<td>
+					{{ item.quantity }}
+                </td>
+                <td align="right">
+					<span class="mz-item-price">{% filter currency %} {{ item.actualPrice|multiply(item.quantity) }} {% endfilter %}</span>
+				</td>
 			</tr>
 		{% endfor %}
+
+		<tbody>
+            <tr class="mz-ordersummary-subtotal">
+              <td align="right" colspan="5">
+                <span class="mz-ordersummary-totalname">{{ labels.orderTotal }}:</span>
+                <span class="mz-ordersummary-totalvalue">{{ model.lineItemTotal|currency }}</span>
+              </td>
+            </tr>
+			    
+            <tr class="mz-ordersummary-shippingtotal">
+              <td align="right" colspan="5">
+                <span class="mz-ordersummary-totalname">{{ labels.shippingInformation }}:</span>
+                <span class="mz-ordersummary-totalvalue">{{ model.shippingTotal|currency }}</span>
+              </td>
+            </tr>
+
+			<tr class="mz-ordersummary-additionalhandling">
+              <td align="right" colspan="5">
+                <span class="mz-ordersummary-totalname">{{ labels.mobileHandling }}:</span>
+                <span class="mz-ordersummary-totalvalue">{{ model.handlingTotal|currency }}</span>
+              </td>
+            </tr>
+			            
+            <tr class="mz-ordersummary-grandtotal">
+                <td align="right" colspan="5">
+                    <span class="mz-ordersummary-totalname">{{ labels.total }}:</span>
+                    <span class="mz-ordersummary-totalvalue">{{ model.total|currency }}</span>
+                </td>
+            </tr>
+        </tbody>
+
     </table>
 
     <p>{{ labels.orderPickupReadyBlob2 }}</p>
