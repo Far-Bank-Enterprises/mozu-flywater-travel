@@ -41,6 +41,7 @@
         <tr>
         <td>{{ model.storeLocation.name }}</td>
         <td class="mz-ordersummary-regular-hours">
+        {% if model.storeLocation.regularHours.timeZone %}            
             {{ labels.sunday }}:
             {% if model.storeLocation.regularHours.sunday.isClosed==false %} 
                 {{ model.storeLocation.regularHours.sunday.openTime }} 
@@ -189,7 +190,6 @@
             {% endif %}
             <br>
             {% endif %}
-            <br>
         </td>
         <td>{{ model.storeLocation.note }}</td>
         </tr>
