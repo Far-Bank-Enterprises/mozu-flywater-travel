@@ -1,7 +1,5 @@
   {% extends "email/email" %}
-
-  {% block body-content %}
-  
+  {% block body-content %}  
   {% if smsEnabled == "True" or smsEnabled == "true" %}
     <!--- Header --->
     <div class="mz-curbside-email-header">  
@@ -33,7 +31,7 @@
         <thead>
             <tr>
                 <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.storeLocation }}</td>
-                <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.storeHours }}</font></td>
+                <td bgcolor="#666666" class="storeHours"><font color="#FFFFFF">{{ labels.storeHours }}</font></td>
                 <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.pickupDetails }}</font></td>
             </tr>
         </thead>
@@ -208,7 +206,7 @@
  <br> <br> <hr> <br> <br>
     <h3>{{ labels.readyForPickup }}</h3>
 
-    <table width="100%" cellpadding="1" cellspacing="1" width="50%">
+    <table width="100%" class="tableStyle" cellpadding="1" cellspacing="1" width="50%">
         <thead>
             <tr>
                 <td bgcolor="#B3B3B3" colspan="2"><font color="#FFFFFF">{{ labels.item }}</font></td>                
@@ -242,7 +240,7 @@
 
      <h3>{{ labels.onItsWay }}</h3>
 
-    <table width="100%" cellpadding="1" cellspacing="1" width="50%">
+    <table width="100%" class="tableStyle" cellpadding="1" cellspacing="1" width="50%">
         <thead>
             <tr>
                 <td bgcolor="#B3B3B3" colspan="2"><font color="#FFFFFF">{{ labels.item }}</font></td>                
@@ -272,9 +270,77 @@
           {% endfor %}
         </tbody>
     </table>
-
-    <p>{{ labels.orderPickupReadyBlob2 }}</p>
-
-    {{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}
+ </br>  </br> 
+    <table  class="orderTotalTableStyle" cellpadding="1" cellspacing="1">        
+           <tbody>
+            <tr class="mz-ordersummary-shippingtotal">
+              <td  bgcolor="#B3B3B3"  align="left" colspan="4"  >
+                <span class="mz-ordersummary-totalname">{{ labels.total }}:</span>
+                <span class="orderTotalValue">{{ model.total|currency }}</span>
+              </td>
+            </tr>
+            {% if model.shippingtotal %}
+            <tr class="mz-ordersummary-additionalhandling">
+                <td  bgcolor="#B3B3B3"  align="left" colspan="4"  >
+                  <span class="mz-ordersummary-totalname">{{ labels.shippingInformation }}</span>
+                  <span class="orderTotalValue">{{ model.shippingtotal|currency }}</span>
+                </td>
+            </tr>
+              {% endif %}
+               {% if model.handlingTotal %}
+            <tr class="mz-ordersummary-additionalhandling">
+                <td  bgcolor="#B3B3B3"  align="left" colspan="4"  >
+                  <span class="mz-ordersummary-totalname">{{ labels.mobileHandling }}</span>
+                  <span class="orderTotalValue">{{ model.handlingTotal|currency }}</span>
+                </td>
+            </tr>
+            {% endif %}
+            <tr class="mz-ordersummary-grandtotal">
+                <td bgcolor="#B3B3B3"  align="left" colspan="4"  >
+                    <span class="mz-ordersummary-totalname">{{ labels.total }}:</span>
+                    <span class="orderTotalValue">{{ model.total|currency }}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  <br>
+    <table width="100%"  class="tableStyle"  cellpadding="1" cellspacing="1">
+        <thead>
+            <tr >
+                <td bgcolor="#B3B3B3" colspan="2"><font color="#FFFFFF">{{ labels.orderComments  }}</font></td>              
+            </tr>
+        </thead>
+        <tbody>
+              <tr>
+                 <td colspan="2">
+                   {{ labels.orderPickupReadyBlob2 }}
+                </td>
+              </tr>      
+        </tbody>
+    </table>
+    </br>
+       <!--- Need Order Help Card --->       
+    <table width="100%" class="tableStyle" cellpadding="1" cellspacing="1" width="50%">
+        <thead>
+            <tr>
+                <td bgcolor="#B3B3B3" colspan="2"><font color="#FFFFFF">{{ labels.orderCompleteBlob3  }}</font></td>             
+            </tr>
+        </thead>
+        <tbody>
+              <tr>
+                 <td td colspan="2">
+                     <div class="mz-shopper-notification-card">
+                      <div class="mz-shopper-notification-card-header">{{ labels.orderCompleteBlob3 }}</div>
+                        <div class="mz-shopper-notification-card-body">
+                        <p>{{ labels.orderCompleteBlob4|string_format(domainName)|safe }}</p>
+                        </div>
+                      </div>
+                 </td>
+              </tr>      
+        </tbody>
+      </table>
+    <br/>
+ </br>
+    {{ labels.emailClosing|string_format(siteContext.generalSettings.websiteName)|safe }}  
 
 {% endblock body-content %}
