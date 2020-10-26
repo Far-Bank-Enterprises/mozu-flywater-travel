@@ -197,15 +197,24 @@
     </table>
     <br>
 
+  <div class="order-details-header">
+        <div class="order-details-left">
+            <h2  class="label-order-details"> {{ labels.orderDetails }} </h2>
+        </div>
+        <div class="order-details-right" align="right">
+            <p> <b>{{ labels.orderNumber }}  {{ model.orderNumber }} </b></p>
+        </div>
+    </div>
+ <br> <br> <hr> <br> <br>
     <h3>{{ labels.readyForPickup }}</h3>
 
     <table width="100%" cellpadding="1" cellspacing="1" width="50%">
         <thead>
             <tr>
-                <td bgcolor="#666666" colspan="2"><font color="#FFFFFF">{{ labels.item }}</font></td>                
-                <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.unitPrice }}</font></td>
-                <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.quantity }}</font></td>
-                <td bgcolor="#666666" style="text-align: right;"><font color="#FFFFFF">{{ labels.itemTotal }}</font></td>
+                <td bgcolor="#B3B3B3" colspan="2"><font color="#FFFFFF">{{ labels.item }}</font></td>                
+                <td bgcolor="#B3B3B3"><font color="#FFFFFF">{{ labels.unitPrice }}</font></td>
+                <td bgcolor="#B3B3B3"><font color="#FFFFFF">{{ labels.quantity }}</font></td>
+                <td bgcolor="#B3B3B3" style="text-align: right;"><font color="#FFFFFF">{{ labels.itemTotal }}</font></td>
             </tr>
         </thead>
         <tbody>
@@ -229,16 +238,17 @@
           {% endfor %}
         </tbody>
     </table>
+    <br> <br>
 
      <h3>{{ labels.onItsWay }}</h3>
 
     <table width="100%" cellpadding="1" cellspacing="1" width="50%">
         <thead>
             <tr>
-                <td bgcolor="#666666" colspan="2"><font color="#FFFFFF">{{ labels.item }}</font></td>                
-                <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.unitPrice }}</font></td>
-                <td bgcolor="#666666"><font color="#FFFFFF">{{ labels.quantity }}</font></td>
-                <td bgcolor="#666666" style="text-align: right;"><font color="#FFFFFF">{{ labels.itemTotal }}</font></td>
+                <td bgcolor="#B3B3B3" colspan="2"><font color="#FFFFFF">{{ labels.item }}</font></td>                
+                <td bgcolor="#B3B3B3"><font color="#FFFFFF">{{ labels.unitPrice }}</font></td>
+                <td bgcolor="#B3B3B3"><font color="#FFFFFF">{{ labels.quantity }}</font></td>
+                <td bgcolor="#B3B3B3" style="text-align: right;"><font color="#FFFFFF">{{ labels.itemTotal }}</font></td>
             </tr>
         </thead>
         <tbody>

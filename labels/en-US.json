@@ -387,7 +387,8 @@
   "notPurchasable": "Not Purchasable",
   "of": "of",
   "oldPassword": "Old Password",
-  "onItsWay": "On its way",
+  
+  "onItsWay": "Remaining Items Not Ready Yet",
   "optIn": "Yes! I want to receive news and special offers from {0}!",
   "optionalComments": "Comments (Optional)",
   "options": "Options",
