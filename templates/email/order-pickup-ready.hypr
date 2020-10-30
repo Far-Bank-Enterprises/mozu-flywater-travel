@@ -198,6 +198,7 @@
 	
    {% if smsEnabled == "True" or smsEnabled == "true" %}	
 		<!--- Order Details --->
+		<br>
 		<div class="mz-multiship-email" style="width: 100%;">
 			<div class="mz-table-header" style="padding:15px">
 				<span style="font-size:25px">{{ labels.orderDetails }}</span>
@@ -210,9 +211,8 @@
 		<hr/>
 		<br>
 		<div style="margin: 10px 0px">		
-			<span style="font-size:18px">{{ labels.itemsToFulfill }}</span>
-		</div>
-		<br>
+			<span style="font-size:16px">{{ labels.itemsToFulfill }}</span>
+		</div>		
    {% endif %}
 
     <br>
